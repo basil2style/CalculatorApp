@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     
     
     @IBOutlet weak var label: UILabel!
+    //Number button action
     @IBAction func numbers(_ sender: UIButton) {
         if mathPerforming == true{
             label.text = String(sender.tag-1)
@@ -31,7 +32,7 @@ class ViewController: UIViewController {
         }
        
     }
-    
+    //Button operation
     @IBAction func operatorBtn(_ sender: UIButton) {
         if label.text != "" && sender.tag != 11 && sender.tag != 16 {
             firstNumber = Double(label.text!)!
