@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     var numberScreen:Double = 0;
     var firstNumber:Double = 0;
     var mathPerforming = false;
+    var operationVar = 0;
     
     
     
@@ -50,7 +51,34 @@ class ViewController: UIViewController {
                 break;
             
             }
+            operationVar = sender.tag
             mathPerforming = true;
+        }
+        else if sender.tag == 16 {
+            switch operationVar {
+            case 12:     //Divide
+                label.text = String(numberScreen/firstNumber)
+                break;
+            case 13:     //Multiply
+                label.text = String(numberScreen*firstNumber)
+                break;
+            case 14:    //Minus
+                label.text = String(numberScreen-firstNumber)
+                break;
+            case 15:    //Addition
+                label.text = String(numberScreen+firstNumber)
+                break;
+            default :
+                break;
+                
+            }
+
+        }
+        else if sender.tag == 11 {
+            label.text = "0"
+            firstNumber = 0;
+            operationVar = 0;
+            numberScreen = 0;
         }
     }
    
