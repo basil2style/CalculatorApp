@@ -20,19 +20,28 @@ class ViewController: UIViewController {
     @IBAction func numbers(_ sender: UIButton) {
         if mathPerforming == true{
             label.text = String(sender.tag-1)
+            numberScreen = Double(label.text!)!
+            mathPerforming = false
         }
-        label.text = label.text! + String(sender.tag-1)
-        numberScreen = Double(label.text!)!
+        else{
+            label.text = label.text! + String(sender.tag-1)
+            numberScreen = Double(label.text!)!
+        }
+       
     }
     
     @IBAction func operatorBtn(_ sender: UIButton) {
         if label.text != "" && sender.tag != 11 && sender.tag != 16 {
+            firstNumber = Double(label.text!)!
             switch sender.tag {
             case 12:     //Divide
+                label.text = "/"
                 break;
             case 13:     //Multiply
+                label.text = "*"
                 break;
             case 14:    //Minus
+                label.text = "-"
                 break;
             case 15:    //Addition
                 label.text = "+"
