@@ -63,7 +63,7 @@ class ViewController: UIViewController {
                 label.text = String(numberScreen*firstNumber)
                 break;
             case 14:    //Minus
-                label.text = String(numberScreen-firstNumber)
+                label.text = String(firstNumber-numberScreen)
                 break;
             case 15:    //Addition
                 label.text = String(numberScreen+firstNumber)
