@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     var numberScreen:Double = 0;
     var firstNumber:Double = 0;
+    var firstNumbers:[Double] = [0];
     var mathPerforming = false;
     var operationVar = 0;
     
@@ -34,6 +35,7 @@ class ViewController: UIViewController {
     @IBAction func operatorBtn(_ sender: UIButton) {
         if label.text != "" && sender.tag != 11 && sender.tag != 16 {
             firstNumber = Double(label.text!)!
+            firstNumbers.append(Double(label.text!)!)
             switch sender.tag {
             case 12:     //Divide
                 label.text = "/"
