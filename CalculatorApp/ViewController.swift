@@ -12,10 +12,11 @@ class ViewController: UIViewController {
     var numberScreen:Double = 0;        //current number on screen
     var firstNumber:Double = 0;         // previous number on screen
     var firstNumbers:[Double] = [0];
-    var firstOperation:Double = 0;      //tracking first operation
+    //var firstOperation:Double = 0;      //tracking first operation
     var mathPerforming = false;         //This is for knowing whether we are performing math operation or not
     var operationVar = 0;
     var value:Double = 0.0;
+    var firstOperation = false;
     
     
     
@@ -26,6 +27,7 @@ class ViewController: UIViewController {
             label.text = String(sender.tag-1)
             numberScreen = Double(label.text!)!
             mathPerforming = false
+            firstOperation = true
             firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
             label.text = String(firstNumber)
         }
@@ -62,23 +64,30 @@ class ViewController: UIViewController {
             mathPerforming = true;
         }
         else if sender.tag == 16 {      //equalto operation
-            switch operationVar {       //saved operation symbol
-            case 12:     //Divide
-                label.text = String(numberScreen/firstNumber)
-                break;
-            case 13:     //Multiply
-                label.text = String(numberScreen*firstNumber)
-                break;
-            case 14:    //Minus
-                label.text = String(firstNumber-numberScreen)
-                break;
-            case 15:    //Addition
-                label.text = String(numberScreen+firstNumber)
-                break;
-            default :
-                break;
-                
+            if firstOperation == true {
+                label.text = String(firstNumber)
+                //firstOperation = false
             }
+            else {
+                switch operationVar {       //saved operation symbol
+                case 12:     //Divide
+                    label.text = String(numberScreen/firstNumber)
+                    break;
+                case 13:     //Multiply
+                    label.text = String(numberScreen*firstNumber)
+                    break;
+                case 14:    //Minus
+                    label.text = String(firstNumber-numberScreen)
+                    break;
+                case 15:    //Addition
+                    label.text = String(numberScreen+firstNumber)
+                    break;
+                default :
+                    break;
+                    
+                }
+            }
+       
 
         }
         else if sender.tag == 11 {      //Clear operation
