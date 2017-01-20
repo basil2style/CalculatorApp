@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     var firstOperation:Double = 0;      //tracking first operation
     var mathPerforming = false;         //This is for knowing whether we are performing math operation or not
     var operationVar = 0;
-    
+    var value:Double = 0.0;
     
     
     
@@ -26,6 +26,8 @@ class ViewController: UIViewController {
             label.text = String(sender.tag-1)
             numberScreen = Double(label.text!)!
             mathPerforming = false
+            firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
+            label.text = String(firstNumber)
         }
         else{
             label.text = label.text! + String(sender.tag-1)
@@ -33,6 +35,7 @@ class ViewController: UIViewController {
         }
        
     }
+    
     //Button operation
     @IBAction func operatorBtn(_ sender: UIButton) {
         if label.text != "" && sender.tag != 11 && sender.tag != 16 {
@@ -86,6 +89,27 @@ class ViewController: UIViewController {
         }
     }
    
+    func mathOperation(numberOnScreen:Double,operationVar:Int,firstNumber:Double) -> Double {
+        switch operationVar {       //saved operation symbol
+        
+        case 12:     //Divide
+            value = firstNumber/numberOnScreen
+            break;
+        case 13:     //Multiply
+            value = numberOnScreen*firstNumber
+            break;
+        case 14:    //Minus
+            value = firstNumber-numberOnScreen
+            break;
+        case 15:    //Addition
+            value = numberOnScreen+firstNumber
+            break;
+        default :
+            break;
+            
+        }
+        return value
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
