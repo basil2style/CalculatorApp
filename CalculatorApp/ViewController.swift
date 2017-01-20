@@ -9,10 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var numberScreen:Double = 0;
-    var firstNumber:Double = 0;
+    var numberScreen:Double = 0;        //current number on screen
+    var firstNumber:Double = 0;         // previous number on screen
     var firstNumbers:[Double] = [0];
-    var mathPerforming = false;
+    var firstOperation:Double = 0;      //tracking first operation
+    var mathPerforming = false;         //This is for knowing whether we are performing math operation or not
     var operationVar = 0;
     
     
@@ -57,8 +58,8 @@ class ViewController: UIViewController {
             operationVar = sender.tag
             mathPerforming = true;
         }
-        else if sender.tag == 16 {
-            switch operationVar {
+        else if sender.tag == 16 {      //equalto operation
+            switch operationVar {       //saved operation symbol
             case 12:     //Divide
                 label.text = String(numberScreen/firstNumber)
                 break;
@@ -77,7 +78,7 @@ class ViewController: UIViewController {
             }
 
         }
-        else if sender.tag == 11 {
+        else if sender.tag == 11 {      //Clear operation
             label.text = "0"
             firstNumber = 0;
             operationVar = 0;
