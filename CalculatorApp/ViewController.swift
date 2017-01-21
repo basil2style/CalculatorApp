@@ -27,7 +27,7 @@ class ViewController: UIViewController {
             label.text = String(sender.tag-1)
             numberScreen = Double(label.text!)!
             mathPerforming = false
-            firstOperation = true
+           // firstOperation = true
             firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
             label.text = String(firstNumber)
         }
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
 
         }
         else if sender.tag == 11 {      //Clear operation
-            label.text = "0"
+            label.text = ""
             firstNumber = 0;
             operationVar = 0;
             numberScreen = 0;
