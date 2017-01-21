@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     var operationVar = 0;
     var value:Double = 0.0;
     var firstOperation = false;
+    var pressedOperator = false;
     
     
     
@@ -95,6 +96,14 @@ class ViewController: UIViewController {
             firstNumber = 0;
             operationVar = 0;
             numberScreen = 0;
+        }
+        else if sender.tag == 17 {
+            if pressedOperator == false {       //first time
+               // label.text =  "\(numberScreen)"+"."
+            }
+            else {                              //
+                
+            }
         }
     }
    
