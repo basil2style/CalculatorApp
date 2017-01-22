@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var value:Double = 0.0;
     var firstOperation = false;
     var pressedOperator = false;
+    var userInMiddleOperation = false;
     
     
     
@@ -29,21 +30,56 @@ class ViewController: UIViewController {
             numberScreen = Double(label.text!)!
             mathPerforming = false
            // firstOperation = true
-            firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
-            label.text = String(firstNumber)
+            if userInMiddleOperation == false {
+                
+            }
+            else {
+                
+            }
+          //  firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
+            updateDisplay(numberScreen:numberScreen)
+            
         }
         else{
-            label.text = label.text! + String(sender.tag-1)
-            numberScreen = Double(label.text!)!
+          //  label.text = label.text! + String(sender.tag-1)
+            numberScreen = Double(label.text! + String(sender.tag-1))!
+            updateDisplay(numberScreen: numberScreen)
+        }
+        if sender.tag == 17 {
+            if pressedOperator == false {       //first time
+                 label.text =  "\(numberScreen)"+"."
+                pressedOperator = true
+            }
+            else {                              //
+                
+            }
         }
        
     }
     
+    func updateDisplay(numberScreen:Double){
+        var iAcc = Int(numberScreen)
+        if numberScreen - Double(iAcc) == 0 {
+        label.text = String(iAcc)
+        }
+        else {
+        label.text = String(numberScreen)
+        }
+        
+        
+    }
+  
     //Button operation
     @IBAction func operatorBtn(_ sender: UIButton) {
         if label.text != "" && sender.tag != 11 && sender.tag != 16 {
-            firstNumber = Double(label.text!)!
-            firstNumbers.append(Double(label.text!)!)
+            if mathPerforming == true {
+                firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
+            }
+            else {
+                firstNumber = Double(label.text!)!
+                firstNumbers.append(Double(label.text!)!)
+                
+            }
             switch sender.tag {
             case 12:     //Divide
                 label.text = "/"
@@ -57,10 +93,17 @@ class ViewController: UIViewController {
             case 15:    //Addition
                 label.text = "+"
                 break;
+            case 18:
+                label.text = String(numberScreen * -1)
+                break;
+            case 19:
+                label.text = String(firstNumber.truncatingRemainder(dividingBy: numberScreen))
+                break;
             default :
                 break;
             
             }
+            
             operationVar = sender.tag
             mathPerforming = true;
         }
@@ -96,15 +139,9 @@ class ViewController: UIViewController {
             firstNumber = 0;
             operationVar = 0;
             numberScreen = 0;
+            
         }
-        else if sender.tag == 17 {
-            if pressedOperator == false {       //first time
-               // label.text =  "\(numberScreen)"+"."
-            }
-            else {                              //
-                
-            }
-        }
+        
     }
    
     func mathOperation(numberOnScreen:Double,operationVar:Int,firstNumber:Double) -> Double {
