@@ -4,7 +4,7 @@
 //
 //  Created by Basil on 2017-01-17.
 //  Copyright © 2017 Basil. All rights reserved.
-//
+//  This is a Calculator application
 
 import UIKit
 
@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     var operationVar = 0;
     var value:Double = 0.0;
     var firstOperation = false;
-    var pressedOperator = false;
+    var pressedOperator = false;        //decimal pt
     var userInMiddleOperation = false;
     
     
@@ -83,38 +83,41 @@ class ViewController: UIViewController {
         pressedOperator = false
         if label.text != "" && sender.tag != 11 && sender.tag != 16 {
             if mathPerforming == true {
+                print(operationVar)
                 firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
                 mathPerforming = false
-                print(firstNumber)
+                print(mathPerforming)
             }
             else {
                 firstNumber = Double(label.text!)!
                 //firstNumbers.append(Double(label.text!)!)
+                mathPerforming = true
+                print(mathPerforming)
                 
             }
             switch sender.tag {
             case 12:     //Divide
                 label.text = "/"
-                mathPerforming = true
+                //mathPerforming = true
                 break;
             case 13:     //Multiply
                 label.text = "*"
-                mathPerforming = true
+                //mathPerforming = true
                 break;
             case 14:    //Minus
                 label.text = "-"
-                mathPerforming = true
+                //mathPerforming = true
                 break;
             case 15:    //Addition
                 label.text = "+"
-                mathPerforming = true
+              //  mathPerforming = true
                 break;
             case 18:
                 label.text = String(numberScreen * -1)
                 break;
             case 19:
                 label.text = String(firstNumber.truncatingRemainder(dividingBy: numberScreen))
-                mathPerforming = true
+                //mathPerforming = true
                 break;
             default :
                 break;
@@ -122,7 +125,9 @@ class ViewController: UIViewController {
             }
             
             operationVar = sender.tag
-            mathPerforming = true;
+          //  mathPerforming = true;
+            print(mathPerforming)
+
         }
         else if sender.tag == 16 {      //equalto operation
             if firstOperation == true {
@@ -133,7 +138,7 @@ class ViewController: UIViewController {
             else {
                 switch operationVar {       //saved operation symbol
                 case 12:     //Divide
-                    value = Double(numberScreen/firstNumber)
+                    value = Double(firstNumber/numberScreen)
                     updateDisplay(numberScreen: value)
                     break;
                 case 13:     //Multiply
