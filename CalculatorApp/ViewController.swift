@@ -25,33 +25,42 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     //Number button action
     @IBAction func numbers(_ sender: UIButton) {
-        if mathPerforming == true{
-            label.text = String(sender.tag-1)
-            numberScreen = Double(label.text!)!
-            mathPerforming = false
-           // firstOperation = true
-            if userInMiddleOperation == false {
+        if sender.tag != 17 {
+            if mathPerforming == true {
+                label.text = String(sender.tag-1)
+                numberScreen = Double(label.text!)!
+                mathPerforming = false
+                // firstOperation = true
+                if userInMiddleOperation == false {
+                    
+                }
+                else {
+                    
+                }
+                //  firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
+                updateDisplay(numberScreen:numberScreen)
                 
             }
-            else {
-                
+            else{
+                //  label.text = label.text! + String(sender.tag-1)
+                numberScreen = Double(label.text! + String(sender.tag-1))!
+                updateDisplay(numberScreen: numberScreen)
             }
-          //  firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
-            updateDisplay(numberScreen:numberScreen)
-            
         }
-        else{
-          //  label.text = label.text! + String(sender.tag-1)
-            numberScreen = Double(label.text! + String(sender.tag-1))!
-            updateDisplay(numberScreen: numberScreen)
-        }
+      
         if sender.tag == 17 {
             if pressedOperator == false {       //first time
-                 label.text =  "\(numberScreen)"+"."
+                var tesVar = Int(numberScreen)
+                if numberScreen - Double(tesVar) == 0 {
+                    print(numberScreen)
+                     label.text =  "\(tesVar)"+"."
+                    }
+               
                 pressedOperator = true
             }
             else {                              //
-                
+                //label.text =  "\(numberScreen)"
+                updateDisplay(numberScreen: numberScreen)
             }
         }
        
@@ -71,33 +80,41 @@ class ViewController: UIViewController {
   
     //Button operation
     @IBAction func operatorBtn(_ sender: UIButton) {
+        pressedOperator = false
         if label.text != "" && sender.tag != 11 && sender.tag != 16 {
             if mathPerforming == true {
                 firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
+                mathPerforming = false
+                print(firstNumber)
             }
             else {
                 firstNumber = Double(label.text!)!
-                firstNumbers.append(Double(label.text!)!)
+                //firstNumbers.append(Double(label.text!)!)
                 
             }
             switch sender.tag {
             case 12:     //Divide
                 label.text = "/"
+                mathPerforming = true
                 break;
             case 13:     //Multiply
                 label.text = "*"
+                mathPerforming = true
                 break;
             case 14:    //Minus
                 label.text = "-"
+                mathPerforming = true
                 break;
             case 15:    //Addition
                 label.text = "+"
+                mathPerforming = true
                 break;
             case 18:
                 label.text = String(numberScreen * -1)
                 break;
             case 19:
                 label.text = String(firstNumber.truncatingRemainder(dividingBy: numberScreen))
+                mathPerforming = true
                 break;
             default :
                 break;
@@ -111,20 +128,25 @@ class ViewController: UIViewController {
             if firstOperation == true {
                 label.text = String(firstNumber)
                 //firstOperation = false
+                updateDisplay(numberScreen: firstNumber)
             }
             else {
                 switch operationVar {       //saved operation symbol
                 case 12:     //Divide
-                    label.text = String(numberScreen/firstNumber)
+                    value = Double(numberScreen/firstNumber)
+                    updateDisplay(numberScreen: value)
                     break;
                 case 13:     //Multiply
-                    label.text = String(numberScreen*firstNumber)
+                    value = Double(numberScreen*firstNumber)
+                    updateDisplay(numberScreen: value)
                     break;
                 case 14:    //Minus
-                    label.text = String(firstNumber-numberScreen)
+                    value = Double(firstNumber-numberScreen)
+                    updateDisplay(numberScreen: value)
                     break;
                 case 15:    //Addition
-                    label.text = String(numberScreen+firstNumber)
+                    value = Double(numberScreen+firstNumber)
+                    updateDisplay(numberScreen: value)
                     break;
                 default :
                     break;
@@ -135,7 +157,7 @@ class ViewController: UIViewController {
 
         }
         else if sender.tag == 11 {      //Clear operation
-            label.text = ""
+            label.text = "0"
             firstNumber = 0;
             operationVar = 0;
             numberScreen = 0;

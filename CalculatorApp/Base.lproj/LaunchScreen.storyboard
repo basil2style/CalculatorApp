@@ -25,7 +25,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="S5S-tM-xyb">
                                 <rect key="frame" x="40" y="220" width="240" height="128"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CalculatorApp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfX-Za-gI1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CalculatorApp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfX-Za-gI1">
                                 <rect key="frame" x="106" y="71" width="108" height="21"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                 <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -34,11 +34,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="S5S-tM-xyb" firstAttribute="top" secondItem="DfX-Za-gI1" secondAttribute="bottom" constant="128" id="1be-Um-uik"/>
                             <constraint firstItem="DfX-Za-gI1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1nC-0x-5Hf"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="S5S-tM-xyb" secondAttribute="bottom" constant="220" id="2hM-FL-6Ft"/>
                             <constraint firstItem="S5S-tM-xyb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="6ra-gc-fa5"/>
                             <constraint firstItem="S5S-tM-xyb" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="24" id="9jq-ln-l5m"/>
-                            <constraint firstItem="DfX-Za-gI1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="O7M-k1-8NR"/>
+                            <constraint firstItem="DfX-Za-gI1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-202.5" id="O7M-k1-8NR"/>
                             <constraint firstItem="S5S-tM-xyb" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="200" id="T9X-av-1Jd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="S5S-tM-xyb" secondAttribute="trailing" constant="24" id="g6d-Kg-wtx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DfX-Za-gI1" secondAttribute="trailing" constant="90" id="gXF-sm-sCL"/>
