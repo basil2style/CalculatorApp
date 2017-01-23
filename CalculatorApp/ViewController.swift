@@ -22,14 +22,14 @@ class ViewController: UIViewController {
     
     
     
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var label: UILabel!          //label variable
     //Number button action
     @IBAction func numbers(_ sender: UIButton) {
         if sender.tag != 17 {               //Check its not decimal point
             if mathPerforming == true {
                 label.text = String(sender.tag-1)
                 numberScreen = Double(label.text!)!
-                mathPerforming = false
+               // mathPerforming = false
                 // firstOperation = true
                 //  firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
                 updateDisplay(numberScreen:numberScreen)
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         }
        
     }
-    
+    //Refresh display label,if numberScreen is Int,then it will display it.
     func updateDisplay(numberScreen:Double){
         self.numberScreen = numberScreen
         var iAcc = Int64(numberScreen)
@@ -132,7 +132,7 @@ class ViewController: UIViewController {
 
         }
         else if sender.tag == 16 {      //equalto operation
-            mathPerforming = false
+           // mathPerforming = false
             if firstOperation == true {
                 label.text = String(firstNumber)
                 //firstOperation = false
