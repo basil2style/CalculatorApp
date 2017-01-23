@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
-//  CalculatorApp
+//  FileName - ViewController.swift
+//  App Name - CalculatorApp
 //
-//  Created by Basil on 2017-01-17.
+//  Student Name: Created by Basil on 2017-01-17.
 //  Copyright © 2017 Basil. All rights reserved.
 //  This is a Calculator application
 
@@ -11,11 +11,11 @@ import UIKit
 class ViewController: UIViewController {
     var numberScreen:Double = 0;        //current number on screen
     var firstNumber:Double = 0;         // previous number on screen
-    var firstNumbers:[Double] = [0];
+    //var firstNumbers:[Double] = [0];
     //var firstOperation:Double = 0;      //tracking first operation
     var mathPerforming = false;         //This is for knowing whether we are performing math operation or not
-    var operationVar = 0;
-    var value:Double = 0.0;
+    var operationVar = 0;               //For setting operator symbol number
+    var value:Double = 0.0;              //Temporary variable
     var firstOperation = false;
     var pressedOperator = false;        //decimal pt
     var userInMiddleOperation = false;
@@ -25,18 +25,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     //Number button action
     @IBAction func numbers(_ sender: UIButton) {
-        if sender.tag != 17 {
+        if sender.tag != 17 {               //Check its not decimal point
             if mathPerforming == true {
                 label.text = String(sender.tag-1)
                 numberScreen = Double(label.text!)!
                 mathPerforming = false
                 // firstOperation = true
-                if userInMiddleOperation == false {
-                    
-                }
-                else {
-                    
-                }
                 //  firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
                 updateDisplay(numberScreen:numberScreen)
                 
@@ -48,7 +42,7 @@ class ViewController: UIViewController {
             }
         }
       
-        if sender.tag == 17 {
+        if sender.tag == 17 {           //check if its decimal point
             if pressedOperator == false {       //first time
                 var tesVar = Int(numberScreen)
                 if numberScreen - Double(tesVar) == 0 {
