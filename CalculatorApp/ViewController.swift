@@ -37,6 +37,8 @@ class ViewController: UIViewController {
             }
             else{
                 //  label.text = label.text! + String(sender.tag-1)
+                print("Label text \(label.text)")
+                print("Sender.tag-1 \(sender.tag-1)")
                 numberScreen = Double(label.text! + String(sender.tag-1))!
                 updateDisplay(numberScreen: numberScreen)
             }
@@ -44,9 +46,9 @@ class ViewController: UIViewController {
       
         if sender.tag == 17 {           //check if its decimal point
             if pressedOperator == false {       //first time
-                var tesVar = Int(numberScreen)
+                var tesVar = Int64(numberScreen)
                 if numberScreen - Double(tesVar) == 0 {
-                    print(numberScreen)
+                   // print(numberScreen)
                      label.text =  "\(tesVar)"+"."
                     }
                
@@ -61,7 +63,8 @@ class ViewController: UIViewController {
     }
     
     func updateDisplay(numberScreen:Double){
-        var iAcc = Int(numberScreen)
+        self.numberScreen = numberScreen
+        var iAcc = Int64(numberScreen)
         if numberScreen - Double(iAcc) == 0 {
         label.text = String(iAcc)
         }
@@ -77,16 +80,16 @@ class ViewController: UIViewController {
         pressedOperator = false
         if label.text != "" && sender.tag != 11 && sender.tag != 16 {
             if mathPerforming == true {
-                print(operationVar)
+               // print(operationVar)
                 firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
                 mathPerforming = false
-                print(mathPerforming)
+                print("mathPerforming \(mathPerforming)")
             }
             else {
                 firstNumber = Double(label.text!)!
                 //firstNumbers.append(Double(label.text!)!)
                 mathPerforming = true
-                print(mathPerforming)
+              // print("mathPerforming \(mathPerforming)")
                 
             }
             switch sender.tag {
@@ -107,7 +110,10 @@ class ViewController: UIViewController {
               //  mathPerforming = true
                 break;
             case 18:
-                label.text = String(numberScreen * -1)
+                value = Double(numberScreen * -1)
+                updateDisplay(numberScreen: value)
+               // label.text = String(value)
+                mathPerforming = false
                 break;
             case 19:
                 label.text = String(firstNumber.truncatingRemainder(dividingBy: numberScreen))
@@ -117,13 +123,16 @@ class ViewController: UIViewController {
                 break;
             
             }
-            
+            if sender.tag != 18 {
             operationVar = sender.tag
+            }
+            
           //  mathPerforming = true;
-            print(mathPerforming)
+          //  print("mathPerforming \(mathPerforming)")
 
         }
         else if sender.tag == 16 {      //equalto operation
+            mathPerforming = false
             if firstOperation == true {
                 label.text = String(firstNumber)
                 //firstOperation = false
