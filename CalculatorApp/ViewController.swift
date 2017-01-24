@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     //Number button action
     @IBAction func numbers(_ sender: UIButton) {
         if sender.tag != 17 {               //Check its not decimal point
-            if mathPerforming == true {
+          /*  if mathPerforming == true {
                 label.text = String(sender.tag-1)
                 numberScreen = Double(label.text!)!
                // mathPerforming = false
@@ -42,7 +42,10 @@ class ViewController: UIViewController {
                 numberScreen = Double(label.text! + String(sender.tag-1))!
                 updateDisplay(numberScreen: numberScreen)
              //   print("First Operation")
-            }
+            }*/
+            numberScreen = Double(label.text! + String(sender.tag-1))!
+            updateDisplay(numberScreen: numberScreen)
+            
         }
       
         if sender.tag == 17 {           //check if its decimal point
@@ -55,10 +58,15 @@ class ViewController: UIViewController {
                
                 pressedOperator = true
             }
-            else {                              //
-                //label.text =  "\(numberScreen)"
+            else if pressedOperator == true {
                 updateDisplay(numberScreen: numberScreen)
             }
+            else {                              //
+                //label.text =  "\(numberScreen)"
+                pressedOperator = false
+                 print(pressedOperator)
+            }
+            print(pressedOperator)
         }
        
     }
@@ -96,19 +104,19 @@ class ViewController: UIViewController {
             }
             switch sender.tag {
             case 12:     //Divide
-                label.text = "/"
+                label.text = ""
                 //mathPerforming = true
                 break;
             case 13:     //Multiply
-                label.text = "*"
+                label.text = ""
                 //mathPerforming = true
                 break;
             case 14:    //Minus
-                label.text = "-"
+                label.text = ""
                 //mathPerforming = true
                 break;
             case 15:    //Addition
-                label.text = "+"
+                label.text = ""
               //  mathPerforming = true
                 break;
             case 18:
@@ -118,7 +126,7 @@ class ViewController: UIViewController {
                 mathPerforming = false
                 break;
             case 19:
-                label.text = String(firstNumber.truncatingRemainder(dividingBy: numberScreen))
+                label.text = String(numberScreen.truncatingRemainder(dividingBy: 100))
                 //mathPerforming = true
                 break;
             default :
@@ -181,6 +189,7 @@ class ViewController: UIViewController {
             numberScreen = 0;
             mathPerforming = false
             firstOperation = true
+            pressedOperator = false
         }
         
     }
