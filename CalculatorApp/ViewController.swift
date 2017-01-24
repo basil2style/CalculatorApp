@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     var mathPerforming = false;         //This is for knowing whether we are performing math operation or not
     var operationVar = 0;               //For setting operator symbol number
     var value:Double = 0.0;              //Temporary variable
-    var firstOperation = false;
+    var firstOperation = true;
     var pressedOperator = false;        //decimal pt
     var userInMiddleOperation = false;
     
@@ -37,10 +37,11 @@ class ViewController: UIViewController {
             }
             else{
                 //  label.text = label.text! + String(sender.tag-1)
-                print("Label text \(label.text)")
-                print("Sender.tag-1 \(sender.tag-1)")
+              //  print("Label text \(label.text)")
+              //  print("Sender.tag-1 \(sender.tag-1)")
                 numberScreen = Double(label.text! + String(sender.tag-1))!
                 updateDisplay(numberScreen: numberScreen)
+             //   print("First Operation")
             }
         }
       
@@ -82,8 +83,9 @@ class ViewController: UIViewController {
             if mathPerforming == true {
                // print(operationVar)
                 firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
-                mathPerforming = false
-                print("mathPerforming \(mathPerforming)")
+                print("Inside mathperforming = true")
+             //   mathPerforming = false
+              //  print("mathPerforming \(mathPerforming)")
             }
             else {
                 firstNumber = Double(label.text!)!
@@ -133,26 +135,34 @@ class ViewController: UIViewController {
         }
         else if sender.tag == 16 {      //equalto operation
            // mathPerforming = false
-            if firstOperation == true {
+            if firstOperation == false {
                 label.text = String(firstNumber)
                 //firstOperation = false
                 updateDisplay(numberScreen: firstNumber)
             }
             else {
+                print("OperationVar:\(operationVar)")
+                print("firsttNumber:\(firstNumber)")
+                print("NumberonScreen:\(numberScreen)")
                 switch operationVar {       //saved operation symbol
+                    
                 case 12:     //Divide
+                    mathPerforming = false
                     value = Double(firstNumber/numberScreen)
                     updateDisplay(numberScreen: value)
                     break;
                 case 13:     //Multiply
+                    mathPerforming = false
                     value = Double(numberScreen*firstNumber)
                     updateDisplay(numberScreen: value)
                     break;
                 case 14:    //Minus
+                    mathPerforming = false
                     value = Double(firstNumber-numberScreen)
                     updateDisplay(numberScreen: value)
                     break;
                 case 15:    //Addition
+                    mathPerforming = false
                     value = Double(numberScreen+firstNumber)
                     updateDisplay(numberScreen: value)
                     break;
@@ -169,7 +179,8 @@ class ViewController: UIViewController {
             firstNumber = 0;
             operationVar = 0;
             numberScreen = 0;
-            
+            mathPerforming = false
+            firstOperation = true
         }
         
     }
