@@ -2,7 +2,7 @@
 //  FileName - ViewController.swift
 //  App Name - CalculatorApp
 //
-//  Student Name: Created by Basil on 2017-01-17.
+//  Student Name: Basil Alias
 //  Copyright © 2017 Basil. All rights reserved.
 //  This is a Calculator application
 
@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     var firstOperation = true;
     var pressedOperator = false;        //decimal pt
     var userInMiddleOperation = false;
+    let d = Double.nan
     
     
     
@@ -26,23 +27,6 @@ class ViewController: UIViewController {
     //Number button action
     @IBAction func numbers(_ sender: UIButton) {
         if sender.tag != 17 {               //Check its not decimal point
-          /*  if mathPerforming == true {
-                label.text = String(sender.tag-1)
-                numberScreen = Double(label.text!)!
-               // mathPerforming = false
-                // firstOperation = true
-                //  firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
-                updateDisplay(numberScreen:numberScreen)
-                
-            }
-            else{
-                //  label.text = label.text! + String(sender.tag-1)
-              //  print("Label text \(label.text)")
-              //  print("Sender.tag-1 \(sender.tag-1)")
-                numberScreen = Double(label.text! + String(sender.tag-1))!
-                updateDisplay(numberScreen: numberScreen)
-             //   print("First Operation")
-            }*/
             numberScreen = Double(label.text! + String(sender.tag-1))!
             updateDisplay(numberScreen: numberScreen)
             
@@ -73,12 +57,19 @@ class ViewController: UIViewController {
     //Refresh display label,if numberScreen is Int,then it will display it.
     func updateDisplay(numberScreen:Double){
         self.numberScreen = numberScreen
-        var iAcc = Int64(numberScreen)
-        if numberScreen - Double(iAcc) == 0 {
-        label.text = String(iAcc)
+        print(numberScreen)
+        if String(numberScreen) == "inf" || String(numberScreen) == "nan"{
+        label.text = String("NaN")
         }
         else {
-        label.text = String(numberScreen)
+            var iAcc = Int64(numberScreen)
+            if numberScreen - Double(iAcc) == 0 {
+                label.text = String(iAcc)
+            }
+            else {
+                label.text = String(numberScreen)
+            }
+            
         }
         
         
@@ -120,6 +111,7 @@ class ViewController: UIViewController {
               //  mathPerforming = true
                 break;
             case 18:
+                print(numberScreen)
                 value = Double(numberScreen * -1)
                 updateDisplay(numberScreen: value)
                // label.text = String(value)
@@ -128,6 +120,8 @@ class ViewController: UIViewController {
             case 19:
                 label.text = String(numberScreen.truncatingRemainder(dividingBy: 100))
                 //mathPerforming = true
+               // print(numberScreen)
+                mathPerforming = false
                 break;
             default :
                 break;
@@ -141,7 +135,11 @@ class ViewController: UIViewController {
           //  print("mathPerforming \(mathPerforming)")
 
         }
-        else if sender.tag == 16 {      //equalto operation
+        else if sender.tag == 16  {      //equalto operation
+            
+            if String(numberScreen) == "inf" {
+                
+            }
            // mathPerforming = false
             if firstOperation == false {
                 label.text = String(firstNumber)
@@ -149,9 +147,9 @@ class ViewController: UIViewController {
                 updateDisplay(numberScreen: firstNumber)
             }
             else {
-                print("OperationVar:\(operationVar)")
-                print("firsttNumber:\(firstNumber)")
-                print("NumberonScreen:\(numberScreen)")
+             //   print("OperationVar:\(operationVar)")
+             //   print("firsttNumber:\(firstNumber)")
+             //   print("NumberonScreen:\(numberScreen)")
                 switch operationVar {       //saved operation symbol
                     
                 case 12:     //Divide
@@ -193,7 +191,7 @@ class ViewController: UIViewController {
         }
         
     }
-   
+   //mathOperation for multiple entries
     func mathOperation(numberOnScreen:Double,operationVar:Int,firstNumber:Double) -> Double {
         switch operationVar {       //saved operation symbol
         
