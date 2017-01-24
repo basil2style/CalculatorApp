@@ -2,9 +2,11 @@
 //  FileName - ViewController.swift
 //  App Name - CalculatorApp
 //
-//  Student Name: Basil Alias
+//  Student Name: Basil Alias (3009199992)
+//  Last modified on 2017-01-23
 //  Copyright © 2017 Basil. All rights reserved.
 //  This is a Calculator application
+// Main features of this application are +/-,%,autofont scaling features ..etc
 
 import UIKit
 
@@ -18,7 +20,7 @@ class ViewController: UIViewController {
     var value:Double = 0.0;              //Temporary variable
     var firstOperation = true;
     var pressedOperator = false;        //decimal pt
-    var userInMiddleOperation = false;
+    //var userInMiddleOperation = false;
     let d = Double.nan
     
     
@@ -55,6 +57,9 @@ class ViewController: UIViewController {
        
     }
     //Refresh display label,if numberScreen is Int,then it will display it.
+    /*
+     Implemented updateDisplay from https://ursooperduper.github.io/2014/09/17/basic-calculator-app.html
+    */
     func updateDisplay(numberScreen:Double){
         self.numberScreen = numberScreen
         print(numberScreen)
