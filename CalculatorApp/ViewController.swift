@@ -2,7 +2,7 @@
 //  FileName - ViewController.swift
 //  App Name - CalculatorApp
 //
-//  Student Name: Basil Alias (3009199992)
+//  Student Name: Basil Alias (300919992)
 //  Last modified on 2017-01-23
 //  Copyright © 2017 Basil. All rights reserved.
 //  This is a Calculator application
@@ -13,15 +13,12 @@ import UIKit
 class ViewController: UIViewController {
     var numberScreen:Double = 0;        //current number on screen
     var firstNumber:Double = 0;         // previous number on screen
-    //var firstNumbers:[Double] = [0];
-    //var firstOperation:Double = 0;      //tracking first operation
     var mathPerforming = false;         //This is for knowing whether we are performing math operation or not
     var operationVar = 0;               //For setting operator symbol number
     var value:Double = 0.0;              //Temporary variable
     var firstOperation = true;
     var pressedOperator = false;        //decimal pt
     //var userInMiddleOperation = false;
-    let d = Double.nan
     
     
     
@@ -88,8 +85,6 @@ class ViewController: UIViewController {
                // print(operationVar)
                 firstNumber = mathOperation(numberOnScreen: numberScreen,operationVar: operationVar,firstNumber: firstNumber);
                 print("Inside mathperforming = true")
-             //   mathPerforming = false
-              //  print("mathPerforming \(mathPerforming)")
             }
             else {
                 firstNumber = Double(label.text!)!
@@ -124,8 +119,6 @@ class ViewController: UIViewController {
                 break;
             case 19:
                 label.text = String(numberScreen.truncatingRemainder(dividingBy: 100))
-                //mathPerforming = true
-               // print(numberScreen)
                 mathPerforming = false
                 break;
             default :
